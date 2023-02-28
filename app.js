@@ -1,4 +1,4 @@
-const { mostrarMenu } = require('./helpers/mensajes');
+const { mostrarMenu, pausa } = require('./helpers/mensajes');
 
 require('colors');
 console.clear();
@@ -6,7 +6,17 @@ console.clear();
 const main = async() => {
     console.log('Hola mundo');
 
-    mostrarMenu();
+    let opt = '';
+
+    do {
+        opt = await mostrarMenu();
+        console.log({opt});
+        await pausa();
+        
+    } while (opt !== '0');
+
+
+    
 }
 
 main();
