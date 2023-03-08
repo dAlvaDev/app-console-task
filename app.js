@@ -1,6 +1,6 @@
 require('colors');
 
-const { guardarDB } = require('./helpers/guardarArchivo');
+const { guardarDB, leerDB } = require('./helpers/guardarArchivo');
 const { inquirerMenu,
          pausa,
         leerInput, 
@@ -16,6 +16,12 @@ const main = async() => {
     let opt = '';
     const tareas = new Tareas();
 
+    const tareasDB = leerDB();
+
+    if ( tareasDB ) { // cargar tareas
+        tareas.cargarTareasFromArray( tareasDB );
+    }
+    
     do {
         //Imprimir Menu
         opt = await inquirerMenu();
@@ -39,7 +45,7 @@ const main = async() => {
         
         }
 
-        //guardarDB( tareas.listadoArr );
+        guardarDB( tareas.listadoArr );
         await pausa();
 
     } while (opt !== '0');
@@ -50,7 +56,5 @@ const main = async() => {
 
 main();
 
-
-//TODO empieza en el video 12
 
 
