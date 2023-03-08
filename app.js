@@ -1,5 +1,6 @@
 require('colors');
 
+const { guardarDB } = require('./helpers/guardarArchivo');
 const { inquirerMenu,
          pausa,
         leerInput, 
@@ -16,6 +17,7 @@ const main = async() => {
     const tareas = new Tareas();
 
     do {
+        //Imprimir Menu
         opt = await inquirerMenu();
         console.log({opt});
         // const tareas = new Tareas();
@@ -37,6 +39,7 @@ const main = async() => {
         
         }
 
+        //guardarDB( tareas.listadoArr );
         await pausa();
 
     } while (opt !== '0');
@@ -47,5 +50,7 @@ const main = async() => {
 
 main();
 
+
+//TODO empieza en el video 12
 
 
